@@ -136,7 +136,7 @@
 					</div>
 				</header>
 			</div>
-			
+
 			<!-- CTA -->
 
 			<div class="cta">
@@ -147,7 +147,9 @@
 							<div class="cta_container d-flex flex-xl-row flex-column align-items-xl-start align-items-center justify-content-xl-start justify-content-center">
 								<div class="cta_content text-xl-left text-center">
 									<div class="cta_title">그리스도를 닮아 가는 교회</div>
-									<div class="cta_subtitle"><h4>하나님이 미리 아신 자들을 또한 그 아들의 형상을 본받게 하기 위하여 미리 정하셨으니 이는 그로 많은 형제 중에서 맏아들이 되게 하려 하심이니라. (롬 8:29)</h4></div>
+									<div class="cta_subtitle">
+										<h4>하나님이 미리 아신 자들을 또한 그 아들의 형상을 본받게 하기 위하여 미리 정하셨으니 이는 그로 많은 형제 중에서 맏아들이 되게 하려 하심이니라. (롬 8:29)</h4>
+									</div>
 								</div>
 							</div>
 						</div>
