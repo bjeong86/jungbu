@@ -9,7 +9,7 @@
 		select id
 			,category
 			,contents 
-		from swj_main_info;
+		from MAIN_INFO;
 	</select>
 
 </mapper>
