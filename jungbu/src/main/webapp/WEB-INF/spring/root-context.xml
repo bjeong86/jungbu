@@ -15,7 +15,7 @@
 	<!-- mySql과 연결을 담당하는 dataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://108.160.134.123:3306/swjdb?useSSL=false"></property>
+		<property name="url" value="jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false"></property>
 		<property name="username" value="swj"></property>
 		<property name="password" value="1q2w3e4r"></property>
 	</bean>
