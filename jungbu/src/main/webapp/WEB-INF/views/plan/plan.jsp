@@ -117,242 +117,74 @@
 						</div>
 					</div>
 				</div>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br> <br>
 				<div class="row">
-					<div class="col-lg-5">
-
+					<div class="col-lg-12">
 						<!-- Tabs -->
 						<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
-							<div class="tab active">
-								<div class="tab_title">1월 :: January</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">2월 :: Feburary</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">3월 :: March</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">4월 :: April</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">5월 :: May</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">6월 :: June</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">7월 :: July</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">8월 :: August</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">9월 :: September</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">10월 :: October</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">11월 : November</div>
-							</div>
-							<div class="tab">
-								<div class="tab_title">12월 : December</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-7">
-
-						<!-- Panels -->
-						<div class="tab_panels">
-
-							<!-- Panel -->
 							<c:forEach items="${planInfo}" var="plan" varStatus="status">
-								<div class="tab_panel active">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_1}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">1월 :: January</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_1}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_2}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">2월 :: Feburary</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_2}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_3}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">3월 :: March</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_3}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_4}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">4월 :: April</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_4}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_5}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">5월 :: May</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_5}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_6}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">6월 :: June</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_6}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_7}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">7월 :: July</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_7}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_8}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">8월 :: August</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_8}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_9}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">9월 :: September</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_9}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_10}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">10월 :: October</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_10}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_11}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">11월 : November</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_11}</font></div>
 								</div>
-								<div class="tab_panel">
-									<div class="tab_panel_content">
-										<div class="row">
-											<div class="col-lg-7">
-												<div class="tab_list">
-													<ul>
-														<li>
-															<div class="tab_list_title">${plan.month_12}</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="tab">
+									<div class="tab_title">12월 : December</div>
+									<br>
+									<div class="tab_text"><font color="black">${plan.month_12}</font></div>
 								</div>
-							</c:forEach>
 						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

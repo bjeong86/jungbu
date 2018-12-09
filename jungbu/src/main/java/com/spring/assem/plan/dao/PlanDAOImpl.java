@@ -21,7 +21,7 @@ public class PlanDAOImpl implements PlanDAO {
 
 	@Override
 	public List<PlanInfoVO> getPlanInfoByYear(String year) throws Exception {
-		Map<String, Object> param = new HashMap<>();
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("year", year);
 		return sqlSession.selectList(Namespace + ".getPlanInfoByYear", param);
 	}
