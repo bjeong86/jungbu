@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<jsp:useBean id="toDay" class="java.util.Date" />
 <!DOCTYPE html>
 <head>
 <title>수원중부교회</title>
@@ -15,9 +17,73 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news_responsive.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	});
+
+	function showYesterday() {
+		$('#yesterday_bible').show();
+		$('#today_bible').hide();
+		$('#tomorrow_bible').hide();
+	};
+
+	function showToday() {
+		$('#yesterday_bible').hide();
+		$('#today_bible').show();
+		$('#tomorrow_bible').hide();
+	};
+
+	function showTomorrow() {
+		$('#yesterday_bible').hide();
+		$('#today_bible').hide();
+		$('#tomorrow_bible').show();
+	};
+</script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+	var Now = new Date();
+	var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+	var today = new Date().getDay();
+	var todayLabel = week[today];
+
+	var NowTime = Now.getFullYear() + '년 ';
+	NowTime += Now.getMonth() + 1;
+	NowTime += '월 ' + Now.getDate() + '일 ';
+	NowTime += todayLabel + ' 성경읽기는';
+	//<![CDATA[
+	// // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	// Kakao.init('29e7a3c5ee8cf7a79c5052c6b71c6ec4'); // local
+	Kakao.init('34b1e6d89790af6e320e1806e42e48d6');
+	// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+	function sendLink() {
+		Kakao.Link
+				.sendDefault({
+					objectType : 'feed',
+					content : {
+						title : NowTime,
+						description : $("#kakaoMsg").val(),
+						imageUrl : 'http://swjch.org/resources/images/book-1209805_1920.jpg',
+						link : {
+							mobileWebUrl : 'http://swjch.org/bible.do',
+							webUrl : 'http://swjch.org/bible.do'
+						}
+					},
+					buttons : [ {
+						title : '오늘 연대기 말씀 보기',
+						link : {
+							mobileWebUrl : 'http://swjch.org/bible.do',
+							webUrl : 'http://swjch.org/bible.do'
+						}
+					} ]
+				});
+	}
+	//]]>
+</script>
+<style>
+</style>
 </head>
 <body>
-
 	<div class="super_container">
 
 		<!-- Menu -->
@@ -27,28 +93,11 @@
 				<div class="menu_close_container">
 					<div class="menu_close"></div>
 				</div>
-				<form action="#" class="menu_search_form">
-					<input type="text" class="menu_search_input" placeholder="Search" required="required">
-					<button class="menu_search_button">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</button>
-				</form>
 				<ul>
 					<li class="menu_item"><a href="/">Home</a></li>
 					<li class="menu_item"><a href="/bible.do">연대기성경</a></li>
-					<li class="menu_item"><a href="#">연간계획</a></li>
-					<li class="menu_item"><a href="news.html">모임News</a></li>
-					<li class="menu_item"><a href="contact.html">Contact</a></li>
-				</ul>
-			</div>
-			<div class="menu_social">
-				<ul>
-					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					<li class="menu_item"><a href="/plan.do">연간계획</a></li>
+					<li class="menu_item"><a href="/contact.do">Contact</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,7 +105,7 @@
 		<!-- Home -->
 
 		<div class="home">
-			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/images/news.jpg" data-speed="0.8"></div>
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/images/book-1209805_1920.jpg" data-speed="0.8"></div>
 
 			<!-- Header -->
 
@@ -68,7 +117,7 @@
 								<div class="col">
 									<div class="header_top_content d-flex flex-row align-items-center justify-content-start">
 										<div class="logo">
-											<a href="#">수원중부교회</a>
+											<a href="/">수원중부교회</a>
 										</div>
 										<div class="header_top_extra d-flex flex-row align-items-center justify-content-start ml-auto">
 											<div class="header_top_phone">
@@ -94,9 +143,8 @@
 													<ul class="d-flex flex-row align-items-center justify-content-start">
 														<li><a href="/">Home</a></li>
 														<li class="active"><a href="/bible.do">연대기성경</a></li>
-														<li><a href="services.html">연간계획</a></li>
-														<li><a href="news.html">모임News</a></li>
-														<li><a href="contact.html">Contact</a></li>
+														<li><a href="/plan.do">연간계획</a></li>
+														<li><a href="/contact.do">Contact</a></li>
 													</ul>
 												</nav>
 											</div>
@@ -127,27 +175,46 @@
 		<div class="news">
 			<div class="container">
 				<div class="row">
+					<div class="button news_post_button" style="width: 30%">
+						<a href="javascript:showYesterday();"><span>어제말씀</span><span><font color="blue">어제말씀</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 40%">
+						<a href="javascript:showToday();"><span>오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</span><span><font color="blue">오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 30%">
+						<a href="javascript:showTomorrow();"><span>내일말씀</span><span><font color="blue">내일말씀</font></span></a>
+					</div>
 
 					<!-- News Posts -->
-					<div class="col-lg-4">
-						<div class="news_posts">
+					<div id="yesterday_bible" style="display: none;">
+						<div class="col-lg-12">
+							<div class="news_posts">
 
-							<!-- News Post -->
-							<div class="news_post">
-								<div class="news_post_content">
-									<div class="news_post_date">
-										<a href="#">12월 9일, 2018</a>
-									</div>
-									<div class="news_post_title">
-										<a href="#">마태복음 1장 ~ 3장</a>
-									</div>
-									<div class="news_post_text">
-										<p>
-											<font color="black" size="3">마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장마태복음 1장 ~ 3장</font>
-										</p>
-									</div>
-									<div class="button news_post_button">
-										<a href="#"><span>어제말씀</span><span>전체보기</span></a>
+								<!-- News Post -->
+								<div class="news_post">
+									<div class="news_post_content">
+										<div class="news_post_title">
+											<a href="#"> <c:forEach items="${bibleScheduleBf}" var="schedule" varStatus="status">
+														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
+												</c:forEach>
+											</a>
+										</div>
+										<div class="news_post_text">
+											<p>
+												<font color="black"> <c:forEach items="${bibleContentsBf}" var="bible" varStatus="status">
+														<c:if test="${bible.verse eq '1'}">
+															<br>
+															<h3>
+																<b>${bible.title} ${bible.chapter}장</b>
+															</h3>
+														</c:if>
+														<h4>
+															<font size="1">${bible.verse}</font> ${bible.contents}
+														</h4>
+													</c:forEach>
+												</font>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -155,25 +222,38 @@
 					</div>
 
 					<!-- News Posts -->
-					<div class="col-lg-4">
-						<div class="news_posts">
+					<div id="today_bible" style="display: block;">
+						<div class="col-lg-12">
+							<div class="news_posts">
 
-							<!-- News Post -->
-							<div class="news_post">
-								<div class="news_post_content">
-									<div class="news_post_date">
-										<a href="">12월 10일, 2018</a>
-									</div>
-									<div class="news_post_title">
-										<a href="#">마태복음 4장 ~ 9장</a>
-									</div>
-									<div class="news_post_text">
-										<p>
-											<font color="black" size="3">Donec lorem maximus malesuada lorem max imus mauris. Proin vitae tortor nec risus tristiq ue efficitur. Aliquam luctus est urna, id aliqu am orci tempus sed. Aenean sit amet leo id enim dapibus eleifend. Phasellus ut erat dapibus, tempor sapien non, porta urna. Cras quis ante nibh. Proin tincidunt gravida interdum. Proin sed urna mauris.</font>
-										</p>
-									</div>
-									<div class="button news_post_button">
-										<a href="#"><span>오늘말씀</span><span>전체보기</span></a>
+								<!-- News Post -->
+								<div class="news_post">
+									<div class="news_post_content">
+										<div class="news_post_title">
+											<a href="#"> 
+												<c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
+														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
+												</c:forEach>
+												<br>
+												<font size=4>(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</font>
+											</a>
+										</div>
+										<div class="news_post_text">
+											<p>
+												<font color="black"> <c:forEach items="${bibleContents}" var="bible" varStatus="status">
+														<c:if test="${bible.verse eq '1'}">
+															<br>
+															<h3>
+																<b>${bible.title} ${bible.chapter}장</b>
+															</h3>
+														</c:if>
+														<h4>
+															<font size="1">${bible.verse}</font> ${bible.contents}
+														</h4>
+													</c:forEach>
+												</font>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -181,31 +261,50 @@
 					</div>
 
 					<!-- News Posts -->
-					<div class="col-lg-4">
-						<div class="news_posts">
+					<div id="tomorrow_bible" style="display: none;">
+						<div class="col-lg-12">
+							<div class="news_posts">
 
-							<!-- News Post -->
-							<div class="news_post">
-								<div class="news_post_content">
-									<div class="news_post_date">
-										<a href="">12월 11일, 2018</a>
-									</div>
-									<div class="news_post_title">
-										<a href="#">마태복음 10장 ~ 11장</a>
-									</div>
-									<div class="news_post_text">
-										<p>
-											<font color="black" size="3">Donec lorem maximus malesuada lorem max imus mauris. Proin vitae tortor nec risus tristiq ue efficitur. Aliquam luctus est urna, id aliqu am orci tempus sed. Aenean sit amet leo id enim dapibus eleifend. Phasellus ut erat dapibus, tempor sapien non, porta urna. Cras quis ante nibh. Proin tincidunt gravida interdum. Proin sed urna mauris.</font>
-										</p>
-									</div>
-									<div class="button news_post_button">
-										<a href="#"><span>내일말씀</span><span>전체보기</span></a>
+								<!-- News Post -->
+								<div class="news_post">
+									<div class="news_post_content">
+										<div class="news_post_title">
+											<a href="#"> <c:forEach items="${bibleScheduleAf}" var="schedule" varStatus="status">
+														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
+												</c:forEach>
+											</a>
+										</div>
+										<div class="news_post_text">
+											<p>
+												<font color="black"> <c:forEach items="${bibleContentsAf}" var="bible" varStatus="status">
+														<c:if test="${bible.verse eq '1'}">
+															<br>
+															<h3>
+																<b>${bible.title} ${bible.chapter}장</b>
+															</h3>
+														</c:if>
+														<h4>
+															<font size="1">${bible.verse}</font> ${bible.contents}
+														</h4>
+													</c:forEach>
+												</font>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
+					오늘방문하신분: ${connectingCount} ( 누적방문자: ${connectingTotalCount} )
+					<div class="button news_post_button" style="width: 100%">
+						<a href="javascript:sendLink()"><span><font color="yellow">카카오톡으로 공유하기</font></span><span>카카오톡으로 공유하기</span></a>
+						<c:set var='kakaoMsg' value='' />
+						<c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
+							<c:set var='kakaoMsg' value="${kakaoMsg} ${schedule.title} ${schedule.sChapter}장~${schedule.eChapter}장 " />
+						</c:forEach>
+						<c:set var='kakaoMsg' value='${kakaoMsg}입니다.' />
+						<input type="hidden" id="kakaoMsg" value="${kakaoMsg}" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -225,7 +324,9 @@
 									<a href="#">수원중부교회</a>
 								</div>
 								<div class="footer_about_text">
-									<h4>하나님이 미리 아신 자들을 또한 그 아들의 형상을 본받게 하기 위하여 미리 정하셨으니 이는 그로 많은 형제 중에서 맏아들이 되게 하려 하심이니라. (롬 8:29)</h4>
+									<h4>
+										경기도 수원시 장안구 송정로90번길 3, 6층 <br>(지번) 경기도 수원시 장안구 정자2동 9-5, 6층
+									</h4>
 								</div>
 								<div class="copyright">
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -302,9 +403,8 @@
 									<ul class="d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 										<li class="active"><a href="/">Home</a></li>
 										<li><a href="/bible.do">연대기성경</a></li>
-										<li><a href="services.html">연간계획</a></li>
-										<li><a href="news.html">모임News</a></li>
-										<li><a href="contact.html">Contact</a></li>
+										<li><a href="/plan.do">연간계획</a></li>
+										<li><a href="/contact.do">Contact</a></li>
 									</ul>
 								</nav>
 								<div class="footer_phone ml-lg-auto">

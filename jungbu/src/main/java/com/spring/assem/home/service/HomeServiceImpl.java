@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.spring.assem.home.dao.HomeDAO;
-import com.spring.assem.home.model.SwjMainInfoVO;
+import com.spring.assem.home.vo.SwjMainInfoVO;
 
 @Service
 public class HomeServiceImpl implements HomeService {
@@ -18,6 +18,21 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<SwjMainInfoVO> getSwjMainInfo() throws Exception {
 		return dao.getSwjMainInfo();
+	}
+
+	@Override
+	public void saveConnectingLog(String ip, String msg) throws Exception {
+		dao.saveConnectingLog(ip, msg);
+	}
+
+	@Override
+	public int getConnectingCount() throws Exception {
+		return dao.getConnectingCount();
+	}
+
+	@Override
+	public int getConnectingTotalCount() throws Exception {
+		return dao.getConnectingTotalCount();
 	}
 
 }

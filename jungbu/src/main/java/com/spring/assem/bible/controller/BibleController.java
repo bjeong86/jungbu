@@ -1,54 +1,59 @@
 package com.spring.assem.bible.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.Calendar;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.assem.bible.service.BibleService;
+import com.spring.assem.home.service.HomeService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class BibleController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(BibleController.class);
+
+	@Inject
+	private HomeService homeservice;
 	
 	@Inject
 	private BibleService service;
-	
+
 	@RequestMapping(value = "/bible.do")
-	public String bible(Locale locale, Model model) {
+	public String bible(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/bible.do");
+		homeservice.saveConnectingLog(request.getRemoteAddr(), "bible");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		model.addAttribute("bibleContentsBf", service.getBibleContentsByDay(getDayCount()-(long)1));
+		model.addAttribute("bibleScheduleBf", service.getBibleScheduleByDay(getDayCount()-(long)1));
 		
-		String formattedDate = dateFormat.format(date);
+		model.addAttribute("bibleContents", service.getBibleContentsByDay(getDayCount()));
+		model.addAttribute("bibleSchedule", service.getBibleScheduleByDay(getDayCount()));
 		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("bibleContentsAf", service.getBibleContentsByDay(getDayCount()+(long)1));
+		model.addAttribute("bibleScheduleAf", service.getBibleScheduleByDay(getDayCount()+(long)1));
 		
-//		List<SwjMainInfoVO> swjMainInfoVOList = service.getSwjMainInfo();
-//		model.addAttribute("swjMainInfoVOList", swjMainInfoVOList);
-//
-//		for (SwjMainInfoVO s : swjMainInfoVOList) {
-//			if ("intro".equals(s.getCategory()))
-//				model.addAttribute("intro", s.getContents());
-//			else
-//				model.addAttribute("brethern", s.getContents());
-//		}
-		
+		model.addAttribute("connectingCount", homeservice.getConnectingCount());
+		model.addAttribute("connectingTotalCount", homeservice.getConnectingTotalCount());
+
 		return "bible/bible";
 	}
 	
+	public static long getDayCount(){
+		Calendar sday = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
+		sday.set(2017, Calendar.DECEMBER,31);
+		
+		long l_sday = sday.getTimeInMillis() / (24*60*60*1000);
+		long l_today = today.getTimeInMillis() / (24*60*60*1000);
+		
+		return (l_today - l_sday)%365;
+	}
 }

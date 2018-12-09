@@ -54,28 +54,11 @@
 					<div class="menu_close_container">
 						<div class="menu_close"></div>
 					</div>
-					<form action="#" class="menu_search_form">
-						<input type="text" class="menu_search_input" placeholder="Search" required="required">
-						<button class="menu_search_button">
-							<i class="fa fa-search" aria-hidden="true"></i>
-						</button>
-					</form>
 					<ul>
 						<li class="menu_item"><a href="/">Home</a></li>
 						<li class="menu_item"><a href="/bible.do">연대기성경</a></li>
-						<li class="menu_item"><a href="#">연간계획</a></li>
-						<li class="menu_item"><a href="news.html">모임News</a></li>
-						<li class="menu_item"><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-				<div class="menu_social">
-					<ul>
-						<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="menu_item"><a href="/plan.do">연간계획</a></li>
+						<li class="menu_item"><a href="/contact.do">Contact</a></li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +66,7 @@
 			<!-- Home -->
 
 			<div class="home">
-				<div class="background_image" style="background-image:url(${pageContext.request.contextPath}/resources/images/main_1.jpeg)"></div>
+				<div class="background_image" style="background-image:url(${pageContext.request.contextPath}/resources/images/main_2.jpeg)"></div>
 
 				<!-- Header -->
 
@@ -95,7 +78,7 @@
 									<div class="col">
 										<div class="header_top_content d-flex flex-row align-items-center justify-content-start">
 											<div class="logo">
-												<a href="#">수원중부교회</a>
+												<a href="/">수원중부교회</a>
 											</div>
 											<div class="header_top_extra d-flex flex-row align-items-center justify-content-start ml-auto">
 												<div class="header_top_phone">
@@ -121,9 +104,8 @@
 														<ul class="d-flex flex-row align-items-center justify-content-start">
 															<li class="active"><a href="/">Home</a></li>
 															<li><a href="/bible.do">연대기성경</a></li>
-															<li><a href="services.html">연간계획</a></li>
-															<li><a href="news.html">모임News</a></li>
-															<li><a href="contact.html">Contact</a></li>
+															<li><a href="/plan.do">연간계획</a></li>
+															<li><a href="/contact.do">Contact</a></li>
 														</ul>
 													</nav>
 												</div>
@@ -161,14 +143,17 @@
 
 			<div class="info">
 				<div class="container">
+					<div class="row">
+						<div class="col text-center">
+							<div class="section_title">교회소개</div>
+						</div>
+					</div>
+					<br>
+					<br>
 					<div class="row row-eq-height">
-
 						<!-- Info Box -->
 						<div class="col-lg-6 info_box_col">
 							<div class="info_box">
-								<div class="info_image">
-									<img src="${pageContext.request.contextPath}/resources/images/intro_1.jpg" alt="">
-								</div>
 								<div class="info_content">
 									<div class="info_title">수원중부교회</div>
 									<div id="short_intro" style="display: block;">
@@ -190,9 +175,6 @@
 						<!-- Info Box -->
 						<div class="col-lg-6 info_box_col">
 							<div class="info_box">
-								<div class="info_image">
-									<img src="${pageContext.request.contextPath}/resources/images/intro_2.jpg" alt="">
-								</div>
 								<div class="info_content">
 									<div class="info_title">형제운동이란?</div>
 									<div id="short_brethern" style="display: block;">
@@ -398,7 +380,9 @@
 										<a href="#">수원중부교회</a>
 									</div>
 									<div class="footer_about_text">
-										<h4>하나님이 미리 아신 자들을 또한 그 아들의 형상을 본받게 하기 위하여 미리 정하셨으니 이는 그로 많은 형제 중에서 맏아들이 되게 하려 하심이니라. (롬 8:29)</h4>
+										<h4>
+											경기도 수원시 장안구 송정로90번길 3, 6층 <br>(지번) 경기도 수원시 장안구 정자2동 9-5, 6층
+										</h4>
 									</div>
 									<div class="copyright">
 										<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -475,9 +459,8 @@
 										<ul class="d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 											<li class="active"><a href="/">Home</a></li>
 											<li><a href="/bible.do">연대기성경</a></li>
-											<li><a href="services.html">연간계획</a></li>
-											<li><a href="news.html">모임News</a></li>
-											<li><a href="contact.html">Contact</a></li>
+											<li><a href="/plan.do">연간계획</a></li>
+											<li><a href="/contact.do">Contact</a></li>
 										</ul>
 									</nav>
 									<div class="footer_phone ml-lg-auto">

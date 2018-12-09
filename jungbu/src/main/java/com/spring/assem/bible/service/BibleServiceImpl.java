@@ -6,18 +6,24 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.spring.assem.home.dao.HomeDAO;
-import com.spring.assem.home.model.SwjMainInfoVO;
+import com.spring.assem.bible.dao.BibleDAO;
+import com.spring.assem.bible.vo.BibleContentsVO;
+import com.spring.assem.bible.vo.BibleScheduleVO;
 
 @Service
 public class BibleServiceImpl implements BibleService {
 
 	@Inject
-	private HomeDAO dao;
+	private BibleDAO dao;
 
 	@Override
-	public List<SwjMainInfoVO> getSwjMainInfo() throws Exception {
-		return dao.getSwjMainInfo();
+	public List<BibleContentsVO> getBibleContentsByDay(long day) throws Exception {
+		return dao.getBibleContentsByDay(day);
+	}
+
+	@Override
+	public List<BibleScheduleVO> getBibleScheduleByDay(long day) throws Exception {
+		return dao.getBibleScheduleByDay(day);
 	}
 
 }

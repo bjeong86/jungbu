@@ -2,6 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="SwjMainInfoVO" type="com.spring.assem.home.model.SwjMainInfoVO"/>
+		<typeAlias alias="SwjMainInfoVO" type="com.spring.assem.home.vo.SwjMainInfoVO"/>
+		<typeAlias alias="ConnectingLogVO" type="com.spring.assem.home.vo.ConnectingLogVO"/>
+		<typeAlias alias="BibleContentsVO" type="com.spring.assem.bible.vo.BibleContentsVO"/>
+		<typeAlias alias="BibleScheduleVO" type="com.spring.assem.bible.vo.BibleScheduleVO"/>
+		<typeAlias alias="PlanInfoVO" type="com.spring.assem.plan.vo.PlanInfoVO"/>
 	</typeAliases>
 </configuration>
