@@ -3,15 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <head>
-<title>Contact</title>
+<title>News</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Health medical template project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/bootstrap4/bootstrap.min.css">
 <link href="${pageContext.request.contextPath}/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/contact.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/contact_responsive.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news_responsive.css">
 </head>
 <body>
 
@@ -37,7 +40,7 @@
 		<!-- Home -->
 
 		<div class="home">
-			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/images/contact.jpg" data-speed="0.8"></div>
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/images/news_main.jpg" data-speed="0.8"></div>
 
 			<!-- Header -->
 
@@ -76,8 +79,8 @@
 														<li><a href="/">Home</a></li>
 														<li><a href="/bible.do">연대기성경</a></li>
 														<li><a href="/plan.do">연간계획</a></li>
-														<li><a href="/news.do">모임뉴스</a></li>
-														<li class="active"><a href="/contact.do">Contact</a></li>
+														<li class="active"><a href="/news.do">모임뉴스</a></li>
+														<li><a href="/contact.do">Contact</a></li>
 													</ul>
 												</nav>
 											</div>
@@ -95,7 +98,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="home_content">
-								<div class="home_title">Contact</div>
+								<div class="home_title">모임뉴스</div>
 							</div>
 						</div>
 					</div>
@@ -103,9 +106,36 @@
 			</div>
 		</div>
 
-		<!-- Google Map -->
-		<br>
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.9908388649064!2d127.00507855122659!3d37.2953509472702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5cd024ce189b%3A0x183f49b3d4de5c59!2z7IiY7JuQ7KSR67aA6rWQ7ZqM!5e0!3m2!1sko!2skr!4v1486395997701" width="100%" height="450" frameborder="0" style="border: 0" allowfullscreen></iframe>
+		<!-- News -->
+		<div class="news">
+			<div class="container">
+				<div class="row">
+
+					<!-- News Posts -->
+					<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
+						<div class="col-lg-4">
+							<div class="news_posts">
+
+								<!-- News Post -->
+								<div class="news_post">
+									<div class="news_post_content">
+										<div class="news_post_date">
+											<a href="${moimNews.url}">${moimNews.regdate}</a>
+										</div>
+										<div class="news_post_title">
+											<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
+										</div>
+										<div class="news_post_text">
+											<p><font color="black" size="3">${moimNews.contents}</font></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
 
 		<!-- Footer -->
 
@@ -220,9 +250,14 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/styles/bootstrap4/popper.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/greensock/TweenMax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/greensock/TimelineMax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/greensock/animation.gsap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/easing/easing.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/parallax-js-master/parallax.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/contact.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/news.js"></script>
 </body>
 </html>

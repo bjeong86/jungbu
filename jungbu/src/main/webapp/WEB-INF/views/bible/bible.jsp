@@ -97,6 +97,7 @@
 					<li class="menu_item"><a href="/">Home</a></li>
 					<li class="menu_item"><a href="/bible.do">연대기성경</a></li>
 					<li class="menu_item"><a href="/plan.do">연간계획</a></li>
+					<li class="menu_item"><a href="/news.do">모임뉴스</a></li>
 					<li class="menu_item"><a href="/contact.do">Contact</a></li>
 				</ul>
 			</div>
@@ -144,6 +145,7 @@
 														<li><a href="/">Home</a></li>
 														<li class="active"><a href="/bible.do">연대기성경</a></li>
 														<li><a href="/plan.do">연간계획</a></li>
+														<li><a href="/news.do">모임뉴스</a></li>
 														<li><a href="/contact.do">Contact</a></li>
 													</ul>
 												</nav>
@@ -179,7 +181,9 @@
 						<a href="javascript:showYesterday();"><span>어제말씀</span><span><font color="blue">어제말씀</font></span></a>
 					</div>
 					<div class="button news_post_button" style="width: 40%">
-						<a href="javascript:showToday();"><span>오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</span><span><font color="blue">오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</font></span></a>
+						<a href="javascript:showToday();"><span>오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
+						</span><span><font color="blue">오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
+							</font></span></a>
 					</div>
 					<div class="button news_post_button" style="width: 30%">
 						<a href="javascript:showTomorrow();"><span>내일말씀</span><span><font color="blue">내일말씀</font></span></a>
@@ -230,12 +234,10 @@
 								<div class="news_post">
 									<div class="news_post_content">
 										<div class="news_post_title">
-											<a href="#"> 
-												<c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
+											<a href="#"> <c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
 														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
-												</c:forEach>
-												<br>
-												<font size=4>(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)</font>
+												</c:forEach> <br> <font size=4>(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
+											</font>
 											</a>
 										</div>
 										<div class="news_post_text">
@@ -404,6 +406,7 @@
 										<li class="active"><a href="/">Home</a></li>
 										<li><a href="/bible.do">연대기성경</a></li>
 										<li><a href="/plan.do">연간계획</a></li>
+										<li><a href="/news.do">모임뉴스</a></li>
 										<li><a href="/contact.do">Contact</a></li>
 									</ul>
 								</nav>

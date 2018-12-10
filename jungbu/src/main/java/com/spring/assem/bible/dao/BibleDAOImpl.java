@@ -24,7 +24,7 @@ public class BibleDAOImpl implements BibleDAO {
 
 	@Override
 	public List<BibleContentsVO> getBibleContentsByDay(long day) throws Exception {
-		Map<String, Object> param = new HashMap<>();
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("day", day);
 
 		return sqlSession.selectList(Namespace + ".getBibleContentsByDay", param);
@@ -32,7 +32,7 @@ public class BibleDAOImpl implements BibleDAO {
 
 	@Override
 	public List<BibleScheduleVO> getBibleScheduleByDay(long day) throws Exception {
-		Map<String, Object> param = new HashMap<>();
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("day", day);
 
 		return sqlSession.selectList(Namespace + ".getBibleScheduleByDay", param);

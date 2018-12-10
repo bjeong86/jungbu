@@ -24,7 +24,7 @@ public class ContactController {
 	private HomeService service;
 
 	@RequestMapping(value = "/contact.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
+	public String contact(Locale locale, Model model) throws Exception {
 		logger.info("/contact.do");
 		return "contact/contact";
 	}

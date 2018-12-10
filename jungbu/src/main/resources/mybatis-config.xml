@@ -7,5 +7,6 @@
 		<typeAlias alias="BibleContentsVO" type="com.spring.assem.bible.vo.BibleContentsVO"/>
 		<typeAlias alias="BibleScheduleVO" type="com.spring.assem.bible.vo.BibleScheduleVO"/>
 		<typeAlias alias="PlanInfoVO" type="com.spring.assem.plan.vo.PlanInfoVO"/>
+		<typeAlias alias="NewsVO" type="com.spring.assem.news.vo.NewsVO"/>
 	</typeAliases>
 </configuration>
