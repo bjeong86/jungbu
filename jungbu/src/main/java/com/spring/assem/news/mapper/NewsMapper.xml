@@ -7,20 +7,21 @@
 
 	<select id="getMoimNews" resultType="NewsVO">
 		<![CDATA[
-		select title,
+		select gubun,
+			title,
 			contents,
 			url, 
 			regdate
 		from (
-			select @RNUM := @RNUM + 1 as no, 
+			select @RNUM := @RNUM + 1 as no,
+				GUBUN,
 				TITLE, 
 				CONTENTS,
 				URL, 
 				REGDATE
 			from MOIM_NEWS a ,(select @RNUM := 0) b
 			order by create_date desc
-			) s
-		where s.no < 10;
+			) s;
 		]]>
 	</select>
 

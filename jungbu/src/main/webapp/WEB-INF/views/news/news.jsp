@@ -15,6 +15,39 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/news_responsive.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	});
+
+	function showSermon() {
+		$('#sermon').show();
+		$('#local-mission').hide();
+		$('#edu-training').hide();
+		$('#joy-sad').hide();
+	};
+
+	function showLocalMission() {
+		$('#sermon').hide();
+		$('#local-mission').show();
+		$('#edu-training').hide();
+		$('#joy-sad').hide();
+	};
+
+	function showEduTraining() {
+		$('#sermon').hide();
+		$('#local-mission').hide();
+		$('#edu-training').show();
+		$('#joy-sad').hide();
+	};
+	
+	function showJoySad() {
+		$('#sermon').hide();
+		$('#local-mission').hide();
+		$('#edu-training').hide();
+		$('#joy-sad').show();
+	};
+</script>
 </head>
 <body>
 
@@ -110,29 +143,128 @@
 		<div class="news">
 			<div class="container">
 				<div class="row">
+					<div class="button news_post_button" style="width: 25%">
+						<a href="javascript:showSermon();"><span>집회소식</span><span><font color="blue">집회소식</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 25%">
+						<a href="javascript:showLocalMission();"><span>지역교회/선교</span><span><font color="blue">지역교회/선교</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 25%">
+						<a href="javascript:showEduTraining();"><span>교육/훈련</span><span><font color="blue">교육/훈련</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 25%">
+						<a href="javascript:showJoySad();"><span>경조사소식</span><span><font color="blue">경조사소식</font></span></a>
+					</div>
 
 					<!-- News Posts -->
-					<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
-						<div class="col-lg-4">
-							<div class="news_posts">
+					<div id="sermon" style="display: block">
+						<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
+							<c:if test="${moimNews.gubun eq 'sermon'}">
+								<div class="col-lg-12">
+									<div class="news_posts">
 
-								<!-- News Post -->
-								<div class="news_post">
-									<div class="news_post_content">
-										<div class="news_post_date">
-											<a href="${moimNews.url}">${moimNews.regdate}</a>
-										</div>
-										<div class="news_post_title">
-											<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
-										</div>
-										<div class="news_post_text">
-											<p><font color="black" size="3">${moimNews.contents}</font></p>
+										<!-- News Post -->
+										<div class="news_post">
+											<div class="news_post_content">
+												<div class="news_post_date">
+													<a href="${moimNews.url}">${moimNews.regdate}</a>
+												</div>
+												<div class="news_post_title">
+													<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
+												</div>
+												<div class="news_post_text">
+													<p>
+														<font color="black" size="3">${moimNews.contents}</font>
+													</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</div>
+					<div id="local-mission" style="display: none">
+						<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
+							<c:if test="${moimNews.gubun eq 'local-mission'}">
+								<div class="col-lg-12">
+									<div class="news_posts">
+
+										<!-- News Post -->
+										<div class="news_post">
+											<div class="news_post_content">
+												<div class="news_post_date">
+													<a href="${moimNews.url}">${moimNews.regdate}</a>
+												</div>
+												<div class="news_post_title">
+													<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
+												</div>
+												<div class="news_post_text">
+													<p>
+														<font color="black" size="3">${moimNews.contents}</font>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+					<div id="edu-training" style="display: none">
+						<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
+							<c:if test="${moimNews.gubun eq 'edu-training'}">
+								<div class="col-lg-12">
+									<div class="news_posts">
+
+										<!-- News Post -->
+										<div class="news_post">
+											<div class="news_post_content">
+												<div class="news_post_date">
+													<a href="${moimNews.url}">${moimNews.regdate}</a>
+												</div>
+												<div class="news_post_title">
+													<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
+												</div>
+												<div class="news_post_text">
+													<p>
+														<font color="black" size="3">${moimNews.contents}</font>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+					<div id="joy-sad" style="display: none">
+						<c:forEach items="${moimNewsContents}" var="moimNews" varStatus="status">
+							<c:if test="${moimNews.gubun eq 'joy-sad'}">
+								<div class="col-lg-12">
+									<div class="news_posts">
+
+										<!-- News Post -->
+										<div class="news_post">
+											<div class="news_post_content">
+												<div class="news_post_date">
+													<a href="${moimNews.url}">${moimNews.regdate}</a>
+												</div>
+												<div class="news_post_title">
+													<a href="${moimNews.url}"><font size="4">${moimNews.title}</font></a>
+												</div>
+												<div class="news_post_text">
+													<p>
+														<font color="black" size="3">${moimNews.contents}</font>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>

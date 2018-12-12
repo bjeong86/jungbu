@@ -4,12 +4,19 @@ import java.io.Serializable;
 
 public class NewsVO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	String gubun;
 	String title;
 	String contents;
 	String regdate;
 	String url;
 	
+	public String getGubun() {
+		return gubun;
+	}
+	public void setGubun(String gubun) {
+		this.gubun = gubun;
+	}
 	public String getTitle() {
 		return title;
 	}

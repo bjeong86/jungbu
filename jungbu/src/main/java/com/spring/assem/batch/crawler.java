@@ -26,37 +26,58 @@ public class crawler {
 	private static Connection con;
 	private static Statement stmt;
 	private static ResultSet rs;
-//	 private static String dburl = "jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false&characterEncoding=euckr"; // dev
-//	 private static String id = "swj";
-//	 private static String pw = "1q2w3e4r";
-	private static String dburl = "jdbc:mysql://localhost:3306/swjch?characterEncoding=euckr"; // 운영
-	private static String id = "swjch";
-	private static String pw = "sjch0191!!";
+//	private static String dburl = "jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false&characterEncoding=euckr"; // dev
+//	private static String id = "swj";
+//	private static String pw = "1q2w3e4r";
+	 private static String dburl = "jdbc:mysql://localhost:3306/swjch?characterEncoding=euckr"; // 운영
+	 private static String id = "swjch";
+	 private static String pw = "sjch0191!!";
 
-	@Scheduled(cron = "0 0 0/1 * * *")
-	public static void main() throws IOException, ParseException {
-		// public static void main(String[] args) throws IOException, ParseException {
-		System.out.println("::::::::: http://moimnews.or.kr crawler Start :::::::::");
-		int crawlerSeq = 0;
-		List<MoimNewsVO> list = getInfoFromMoimNews(6);
+	 @Scheduled(cron = "0 0 0/1 * * *")
+	 public static void main() throws IOException, ParseException {
+		//	public static void main(String[] args) throws IOException, ParseException {
+		System.out.println("::::::::: http://moimnews.or.kr crawler sermon Start :::::::::");
+		List<MoimNewsVO> listSermon = getInfoFromMoimNews("sermon", 6);
 
-		for (MoimNewsVO movo : list) {
-			if (crawlerSeq++ < 2)
-				continue;
-
+		for (MoimNewsVO movo : listSermon) {
 			if (!isExist(movo))
 				insert(movo);
 		}
-		System.out.println("::::::::: http://moimnews.or.kr crawler End :::::::::");
+		System.out.println("::::::::: http://moimnews.or.kr crawler sermon End :::::::::");
+		System.out.println("::::::::: http://moimnews.or.kr crawler local-mission Start :::::::::");
+		List<MoimNewsVO> listLocalMission = getInfoFromMoimNews("local-mission", 6);
+
+		for (MoimNewsVO movo : listLocalMission) {
+			if (!isExist(movo))
+				insert(movo);
+		}
+		System.out.println("::::::::: http://moimnews.or.kr local-mission End :::::::::");
+		System.out.println("::::::::: http://moimnews.or.kr crawler edu-training Start :::::::::");
+		List<MoimNewsVO> listLocalEduTraining = getInfoFromMoimNews("edu-training", 6);
+
+		for (MoimNewsVO movo : listLocalEduTraining) {
+			if (!isExist(movo))
+				insert(movo);
+		}
+		System.out.println("::::::::: http://moimnews.or.kr edu-training End :::::::::");
+		System.out.println("::::::::: http://moimnews.or.kr crawler joy-sad Start :::::::::");
+		List<MoimNewsVO> listLocalJoySad = getInfoFromMoimNews("joy-sad", 6);
+
+		for (MoimNewsVO movo : listLocalJoySad) {
+			if (!isExist(movo))
+				insert(movo);
+		}
+		System.out.println("::::::::: http://moimnews.or.kr joy-sad End :::::::::");
+
 	}
 
-	static List<MoimNewsVO> getInfoFromMoimNews(int maxCount) throws IOException, ParseException {
-		String sUrl = "http://moimnews.or.kr/wp/sermon/?mod=list&pageid=1";
+	static List<MoimNewsVO> getInfoFromMoimNews(String gubun, int maxCount) throws IOException, ParseException {
+		String sUrl = "http://moimnews.or.kr/wp/" + gubun + "/?mod=list&pageid=1";
 		Document doc = Jsoup.connect(sUrl).get();
 
 		List<MoimNewsVO> list = new ArrayList<MoimNewsVO>();
 		for (int i = 0; i < maxCount; i++)
-			list.add(new MoimNewsVO("", "", "", "", 0));
+			list.add(new MoimNewsVO("", "", "", "", "", 0));
 
 		int count = 0;
 		for (Element e : doc.select("div.kboard-default-cut-strings")) {
@@ -84,6 +105,52 @@ public class crawler {
 
 			Document targetDoc = Jsoup.connect(sTargetUrl).get();
 			String sContents = targetDoc.select("div.content-view").toString().replaceAll("'", "");
+			list.get(count).setGubun(gubun);
+			list.get(count).setContents(sContents);
+			list.get(count).setContentsHashCode(sContents.hashCode());
+			list.get(count).setUrl(sTargetUrl);
+
+			if (++count > (maxCount - 1))
+				break;
+		}
+		return list;
+	}
+
+	static List<MoimNewsVO> getInfoFromMoimNewsSermon(int maxCount) throws IOException, ParseException {
+		String sUrl = "http://moimnews.or.kr/wp/sermon/?mod=list&pageid=1";
+		Document doc = Jsoup.connect(sUrl).get();
+
+		List<MoimNewsVO> list = new ArrayList<MoimNewsVO>();
+		for (int i = 0; i < maxCount; i++)
+			list.add(new MoimNewsVO("", "", "", "", "", 0));
+
+		int count = 0;
+		for (Element e : doc.select("div.kboard-default-cut-strings")) {
+			// System.out.println(e.text().toString());
+			list.get(count).setTitle(e.text());
+
+			if (++count > (maxCount - 1))
+				break;
+		}
+
+		count = 0;
+		for (Element e : doc.select("div.kboard-mobile-contents span.kboard-date")) {
+			if ("|".equals(e.text()))
+				continue;
+			list.get(count).setRegdate(e.text());
+
+			if (++count > (maxCount - 1))
+				break;
+		}
+
+		count = 0;
+		for (Element e : doc.select("td.kboard-list-title a")) {
+			String sTargetUrl = null;
+			sTargetUrl = "http://moimnews.or.kr" + e.attr("href");
+
+			Document targetDoc = Jsoup.connect(sTargetUrl).get();
+			String sContents = targetDoc.select("div.content-view").toString().replaceAll("'", "");
+			list.get(count).setGubun("sermon");
 			list.get(count).setContents(sContents);
 			list.get(count).setContentsHashCode(sContents.hashCode());
 			list.get(count).setUrl(sTargetUrl);
@@ -100,9 +167,9 @@ public class crawler {
 			con = (Connection) DriverManager.getConnection(dburl, id, pw);
 			stmt = (Statement) con.createStatement();
 
-			String sql = "INSERT INTO " + "MOIM_NEWS(TITLE, CONTENTS, REGDATE, URL, CONTENTS_HASHCODE, CREATE_DATE)" + "VALUES('" + mnvo.getTitle()
-					+ "','" + mnvo.getContents() + "','" + mnvo.getRegdate() + "','" + mnvo.getUrl() + "','" + mnvo.getContentsHashCode() + "',"
-					+ "now());";
+			String sql = "INSERT INTO " + "MOIM_NEWS(GUBUN, TITLE, CONTENTS, REGDATE, URL, CONTENTS_HASHCODE, CREATE_DATE)" + "VALUES(" + "'"
+					+ mnvo.getGubun() + "','" + mnvo.getTitle() + "','" + mnvo.getContents() + "','" + mnvo.getRegdate() + "','" + mnvo.getUrl()
+					+ "','" + mnvo.getContentsHashCode() + "'," + "now());";
 
 			stmt.executeUpdate(sql);
 
@@ -146,18 +213,28 @@ public class crawler {
 }
 
 class MoimNewsVO {
+	String gubun;
 	String title;
 	String contents;
 	String regdate;
 	String url;
 	int contentsHashCode;
 
-	MoimNewsVO(String title, String contents, String regdate, String url, int contentsHashCode) {
+	MoimNewsVO(String gubun, String title, String contents, String regdate, String url, int contentsHashCode) {
+		this.gubun = gubun;
 		this.title = title;
 		this.contents = contents;
 		this.regdate = regdate;
 		this.url = url;
 		this.contentsHashCode = contentsHashCode;
+	}
+
+	public String getGubun() {
+		return gubun;
+	}
+
+	public void setGubun(String gubun) {
+		this.gubun = gubun;
 	}
 
 	public String getTitle() {
