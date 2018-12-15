@@ -26,16 +26,16 @@ public class crawler {
 	private static Connection con;
 	private static Statement stmt;
 	private static ResultSet rs;
-//	private static String dburl = "jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false&characterEncoding=euckr"; // dev
-//	private static String id = "swj";
-//	private static String pw = "1q2w3e4r";
-	 private static String dburl = "jdbc:mysql://localhost:3306/swjch?characterEncoding=euckr"; // 운영
-	 private static String id = "swjch";
-	 private static String pw = "sjch0191!!";
+	// private static String dburl = "jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false&characterEncoding=euckr"; // dev
+	// private static String id = "swj";
+	// private static String pw = "1q2w3e4r";
+	private static String dburl = "jdbc:mysql://localhost:3306/swjch?characterEncoding=euckr"; // 운영
+	private static String id = "swjch";
+	private static String pw = "sjch0191!!";
 
-	 @Scheduled(cron = "0 0 0/1 * * *")
-	 public static void main() throws IOException, ParseException {
-		//	public static void main(String[] args) throws IOException, ParseException {
+	@Scheduled(cron = "0 0 0/1 * * *")
+	public static void main() throws IOException, ParseException {
+		// public static void main(String[] args) throws IOException, ParseException {
 		System.out.println("::::::::: http://moimnews.or.kr crawler sermon Start :::::::::");
 		List<MoimNewsVO> listSermon = getInfoFromMoimNews("sermon", 6);
 
@@ -81,18 +81,7 @@ public class crawler {
 
 		int count = 0;
 		for (Element e : doc.select("div.kboard-default-cut-strings")) {
-			// System.out.println(e.text().toString());
 			list.get(count).setTitle(e.text());
-
-			if (++count > (maxCount - 1))
-				break;
-		}
-
-		count = 0;
-		for (Element e : doc.select("div.kboard-mobile-contents span.kboard-date")) {
-			if ("|".equals(e.text()))
-				continue;
-			list.get(count).setRegdate(e.text());
 
 			if (++count > (maxCount - 1))
 				break;
@@ -116,51 +105,6 @@ public class crawler {
 		return list;
 	}
 
-	static List<MoimNewsVO> getInfoFromMoimNewsSermon(int maxCount) throws IOException, ParseException {
-		String sUrl = "http://moimnews.or.kr/wp/sermon/?mod=list&pageid=1";
-		Document doc = Jsoup.connect(sUrl).get();
-
-		List<MoimNewsVO> list = new ArrayList<MoimNewsVO>();
-		for (int i = 0; i < maxCount; i++)
-			list.add(new MoimNewsVO("", "", "", "", "", 0));
-
-		int count = 0;
-		for (Element e : doc.select("div.kboard-default-cut-strings")) {
-			// System.out.println(e.text().toString());
-			list.get(count).setTitle(e.text());
-
-			if (++count > (maxCount - 1))
-				break;
-		}
-
-		count = 0;
-		for (Element e : doc.select("div.kboard-mobile-contents span.kboard-date")) {
-			if ("|".equals(e.text()))
-				continue;
-			list.get(count).setRegdate(e.text());
-
-			if (++count > (maxCount - 1))
-				break;
-		}
-
-		count = 0;
-		for (Element e : doc.select("td.kboard-list-title a")) {
-			String sTargetUrl = null;
-			sTargetUrl = "http://moimnews.or.kr" + e.attr("href");
-
-			Document targetDoc = Jsoup.connect(sTargetUrl).get();
-			String sContents = targetDoc.select("div.content-view").toString().replaceAll("'", "");
-			list.get(count).setGubun("sermon");
-			list.get(count).setContents(sContents);
-			list.get(count).setContentsHashCode(sContents.hashCode());
-			list.get(count).setUrl(sTargetUrl);
-
-			if (++count > (maxCount - 1))
-				break;
-		}
-		return list;
-	}
-
 	static void insert(MoimNewsVO mnvo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -168,10 +112,11 @@ public class crawler {
 			stmt = (Statement) con.createStatement();
 
 			String sql = "INSERT INTO " + "MOIM_NEWS(GUBUN, TITLE, CONTENTS, REGDATE, URL, CONTENTS_HASHCODE, CREATE_DATE)" + "VALUES(" + "'"
-					+ mnvo.getGubun() + "','" + mnvo.getTitle() + "','" + mnvo.getContents() + "','" + mnvo.getRegdate() + "','" + mnvo.getUrl()
+					+ mnvo.getGubun() + "','" + mnvo.getTitle() + "','" + mnvo.getContents() + "',date_format(now(), \"%Y.%m.%d\"),'" + mnvo.getUrl()
 					+ "','" + mnvo.getContentsHashCode() + "'," + "now());";
 
 			stmt.executeUpdate(sql);
+			System.out.println(sql);
 
 			stmt.close();
 			con.close();

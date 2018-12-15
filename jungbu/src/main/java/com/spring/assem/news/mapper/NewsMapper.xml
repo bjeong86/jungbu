@@ -20,6 +20,7 @@
 				URL, 
 				REGDATE
 			from MOIM_NEWS a ,(select @RNUM := 0) b
+			where a.create_date > date_add(now(), interval -3 month)
 			order by create_date desc
 			) s;
 		]]>
