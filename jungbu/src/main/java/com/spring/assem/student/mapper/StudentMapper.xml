@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.assem.student.mapper.StudentMapper">
+
+	<select id="getStudentInfo" resultType="StudentVO">
+		select 
+			title,
+			contents,
+			regdate
+		from STUDENT
+		where is_deleted = 0
+		order by created_date desc;
+	</select>
+	
+	<insert id="saveStudentInfo">
+		insert into STUDENT(title, contents, regdate, created_date)
+		values(date_format(now(), "%Y년%m월%d일"), #{contents}, date_format(now(), "%Y.%m.%d") , now());
+	</insert>
+
+</mapper>

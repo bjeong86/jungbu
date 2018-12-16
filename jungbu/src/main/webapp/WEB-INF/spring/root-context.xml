@@ -12,22 +12,23 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- mySql과 연결을 담당하는 dataSource local  -->
+	<!-- mySql과 연결을 담당하는 dataSource local   
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://108.160.134.123:3306/swjch?useSSL=false"></property>
+		<property name="url" value="jdbc:mysql://108.160.134.123:3306/swjch?characterEncoding=euckr"></property>
 		<property name="username" value="swj"></property>
 		<property name="password" value="1q2w3e4r"></property>
 	</bean>
+	 -->
 	
-	<!-- mySql과 연결을 담당하는 dataSource swjch
+	<!-- mySql과 연결을 담당하는 dataSource swjch -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost/swjch?useSSL=false"></property>
+		<property name="url" value="jdbc:mysql://localhost/swjch?characterEncoding=euckr"></property>
 		<property name="username" value="swjch"></property>
 		<property name="password" value="sjch0191!!"></property>
-	</bean>
-	-->
+	</bean> 
+	
 	
 	<!-- SqlSessionFactory --> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
@@ -39,6 +40,8 @@
 				<value>classpath*:com/spring/assem/home/mapper/*.xml</value>
 				<value>classpath*:com/spring/assem/bible/mapper/*.xml</value>
 				<value>classpath*:com/spring/assem/plan/mapper/*.xml</value>
+				<value>classpath*:com/spring/assem/news/mapper/*.xml</value>
+				<value>classpath*:com/spring/assem/student/mapper/*.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -52,4 +55,6 @@
 	<context:component-scan base-package="com.spring.assem.home.*"></context:component-scan>
 	<context:component-scan base-package="com.spring.assem.bible.*"></context:component-scan>
 	<context:component-scan base-package="com.spring.assem.plan.*"></context:component-scan>
+	<context:component-scan base-package="com.spring.assem.news.*"></context:component-scan>
+	<context:component-scan base-package="com.spring.assem.student.*"></context:component-scan>
 </beans>
