@@ -37,5 +37,15 @@ public class BibleDAOImpl implements BibleDAO {
 
 		return sqlSession.selectList(Namespace + ".getBibleScheduleByDay", param);
 	}
+	
+	@Override
+	public List<BibleContentsVO> getBibleContentsAll() throws Exception {
+		return sqlSession.selectList(Namespace + ".getBibleContentsAll");
+	}
+
+	@Override
+	public List<BibleScheduleVO> getBibleScheduleAll() throws Exception {
+		return sqlSession.selectList(Namespace + ".getBibleScheduleAll");
+	}
 
 }

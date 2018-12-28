@@ -25,5 +25,15 @@ public class BibleServiceImpl implements BibleService {
 	public List<BibleScheduleVO> getBibleScheduleByDay(long day) throws Exception {
 		return dao.getBibleScheduleByDay(day);
 	}
+	
+	@Override
+	public List<BibleContentsVO> getBibleContentsAll() throws Exception {
+		return dao.getBibleContentsAll();
+	}
+
+	@Override
+	public List<BibleScheduleVO> getBibleScheduleAll() throws Exception {
+		return dao.getBibleScheduleAll();
+	}
 
 }

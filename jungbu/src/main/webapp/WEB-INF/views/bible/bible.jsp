@@ -61,19 +61,23 @@
 				.sendDefault({
 					objectType : 'feed',
 					content : {
-						title : NowTime,
+						title : '[' + $("#day").val() + '일차] ' + NowTime,
 						description : $("#kakaoMsg").val(),
 						imageUrl : 'http://swjch.org/resources/images/book-1209805_1920.jpg',
 						link : {
-							mobileWebUrl : 'http://swjch.org/bible.do',
-							webUrl : 'http://swjch.org/bible.do'
+							mobileWebUrl : 'http://swjch.org/bible.do?day='
+									+ $("#day").val(),
+							webUrl : 'http://swjch.org/bible.do?day='
+									+ $("#day").val()
 						}
 					},
 					buttons : [ {
 						title : '오늘 연대기 말씀 보기',
 						link : {
-							mobileWebUrl : 'http://swjch.org/bible.do',
-							webUrl : 'http://swjch.org/bible.do'
+							mobileWebUrl : 'http://swjch.org/bible.do?day='
+									+ $("#day").val(),
+							webUrl : 'http://swjch.org/bible.do?day='
+									+ $("#day").val()
 						}
 					} ]
 				});
@@ -96,6 +100,7 @@
 				<ul>
 					<li class="menu_item"><a href="/">Home</a></li>
 					<li class="menu_item"><a href="/bible.do">연대기성경</a></li>
+					<li class="menu_item"><a href="/bibleAllView.do">연대기성경365일</a></li>
 					<li class="menu_item"><a href="/plan.do">연간계획</a></li>
 					<li class="menu_item"><a href="/news.do">모임뉴스</a></li>
 					<li class="menu_item"><a href="/contact.do">Contact</a></li>
@@ -144,6 +149,7 @@
 													<ul class="d-flex flex-row align-items-center justify-content-start">
 														<li><a href="/">Home</a></li>
 														<li class="active"><a href="/bible.do">연대기성경</a></li>
+														<li><a href="/bibleAllView.do">연대기성경365일</a></li>
 														<li><a href="/plan.do">연간계획</a></li>
 														<li><a href="/news.do">모임뉴스</a></li>
 														<li><a href="/contact.do">Contact</a></li>
@@ -177,16 +183,17 @@
 		<div class="news">
 			<div class="container">
 				<div class="row">
-					<div class="button news_post_button" style="width: 30%">
+					<div class="button news_post_button" style="width: 20%">
 						<a href="javascript:showYesterday();"><span>어제말씀</span><span><font color="blue">어제말씀</font></span></a>
 					</div>
 					<div class="button news_post_button" style="width: 40%">
-						<a href="javascript:showToday();"><span>오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
-						</span><span><font color="blue">오늘말씀(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
-							</font></span></a>
+						<a href="javascript:showToday();"><span>오늘말씀(${dayCount}일차) </span><span><font color="blue">오늘말씀(${dayCount}일차) </font></span></a>
 					</div>
-					<div class="button news_post_button" style="width: 30%">
+					<div class="button news_post_button" style="width: 20%">
 						<a href="javascript:showTomorrow();"><span>내일말씀</span><span><font color="blue">내일말씀</font></span></a>
+					</div>
+					<div class="button news_post_button" style="width: 20%">
+						<a href="/bibleAllView.do"><span>전체보기</span><span><font color="blue">전체보기</font></span></a>
 					</div>
 
 					<!-- News Posts -->
@@ -198,10 +205,9 @@
 								<div class="news_post">
 									<div class="news_post_content">
 										<div class="news_post_title">
-											<a href="#"> <c:forEach items="${bibleScheduleBf}" var="schedule" varStatus="status">
+											<a href="#"><c:forEach items="${bibleScheduleBf}" var="schedule" varStatus="status">
 														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
-												</c:forEach>
-											</a>
+												</c:forEach> </a>
 										</div>
 										<div class="news_post_text">
 											<p>
@@ -236,7 +242,7 @@
 										<div class="news_post_title">
 											<a href="#"> <c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
 														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
-												</c:forEach> <br> <font size=4>(<fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
+												</c:forEach> <br> <font size=4>(${dayCount}일차 , <fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
 											</font>
 											</a>
 										</div>
@@ -305,7 +311,7 @@
 							<c:set var='kakaoMsg' value="${kakaoMsg} ${schedule.title} ${schedule.sChapter}장~${schedule.eChapter}장 " />
 						</c:forEach>
 						<c:set var='kakaoMsg' value='${kakaoMsg}입니다.' />
-						<input type="hidden" id="kakaoMsg" value="${kakaoMsg}" />
+						<input type="hidden" id="kakaoMsg" value="${kakaoMsg}" /> <input type="hidden" id="day" value="${dayCount}" />
 					</div>
 				</div>
 			</div>
@@ -405,6 +411,7 @@
 									<ul class="d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 										<li class="active"><a href="/">Home</a></li>
 										<li><a href="/bible.do">연대기성경</a></li>
+										<li><a href="/bibleAllView.do">연대기성경365일</a></li>
 										<li><a href="/plan.do">연간계획</a></li>
 										<li><a href="/news.do">모임뉴스</a></li>
 										<li><a href="/contact.do">Contact</a></li>
