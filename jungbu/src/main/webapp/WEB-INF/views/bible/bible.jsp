@@ -184,13 +184,28 @@
 			<div class="container">
 				<div class="row">
 					<div class="button news_post_button" style="width: 20%">
-						<a href="javascript:showYesterday();"><span>어제말씀</span><span><font color="blue">어제말씀</font></span></a>
+						<c:if test="${isToday eq true }">
+							<a href="javascript:showYesterday();"><span>어제말씀</span><span><font color="blue">어제말씀</font></span></a>
+						</c:if>
+						<c:if test="${isToday eq false }">
+							<a href="javascript:showYesterday();"><span>이전말씀</span><span><font color="blue">이전말씀</font></span></a>
+						</c:if>
 					</div>
 					<div class="button news_post_button" style="width: 40%">
-						<a href="javascript:showToday();"><span>오늘말씀(${dayCount}일차) </span><span><font color="blue">오늘말씀(${dayCount}일차) </font></span></a>
+						<c:if test="${isToday eq true }">
+							<a href="javascript:showToday();"><span>오늘말씀(${dayCount}일차) </span><span><font color="blue">오늘말씀(${dayCount}일차) </font></span></a>
+						</c:if>
+						<c:if test="${isToday eq false }">
+							<a href="javascript:showToday();"><span>${dayCount}일차말씀 </span><span><font color="blue">${dayCount}일차 말씀 </font></span></a>
+						</c:if>
 					</div>
 					<div class="button news_post_button" style="width: 20%">
-						<a href="javascript:showTomorrow();"><span>내일말씀</span><span><font color="blue">내일말씀</font></span></a>
+						<c:if test="${isToday eq true }">
+							<a href="javascript:showTomorrow();"><span>내일말씀</span><span><font color="blue">내일말씀</font></span></a>
+						</c:if>
+						<c:if test="${isToday eq false }">
+							<a href="javascript:showTomorrow();"><span>다음말씀</span><span><font color="blue">다음말씀</font></span></a>
+						</c:if>
 					</div>
 					<div class="button news_post_button" style="width: 20%">
 						<a href="/bibleAllView.do"><span>전체보기</span><span><font color="blue">전체보기</font></span></a>
@@ -206,7 +221,7 @@
 									<div class="news_post_content">
 										<div class="news_post_title">
 											<a href="#"><c:forEach items="${bibleScheduleBf}" var="schedule" varStatus="status">
-														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
+													<font size="4">[ ${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장 ]<br></font>
 												</c:forEach> </a>
 										</div>
 										<div class="news_post_text">
@@ -240,10 +255,19 @@
 								<div class="news_post">
 									<div class="news_post_content">
 										<div class="news_post_title">
-											<a href="#"> <c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
-														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
-												</c:forEach> <br> <font size=4>(${dayCount}일차 , <fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" />)
-											</font>
+											<a href="#"> <c:if test="${isToday eq true }">
+													<font size=3>- ${dayCount}일차 , <fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" /> -
+													</font>
+													<br>
+												</c:if> 
+												<c:if test="${isToday eq false }">
+													<font size=3>- ${dayCount}일차  -
+													</font>
+													<br>
+												</c:if> 
+												<c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
+													<font size="4">[ ${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장 ]<br></font>
+												</c:forEach>
 											</a>
 										</div>
 										<div class="news_post_text">
@@ -278,7 +302,7 @@
 									<div class="news_post_content">
 										<div class="news_post_title">
 											<a href="#"> <c:forEach items="${bibleScheduleAf}" var="schedule" varStatus="status">
-														${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장<br>
+													<font size="4">[ ${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장 ]<br></font>
 												</c:forEach>
 											</a>
 										</div>

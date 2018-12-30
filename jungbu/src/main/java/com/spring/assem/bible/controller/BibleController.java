@@ -35,9 +35,14 @@ public class BibleController {
 			throws Exception {
 		logger.info("/bible.do");
 		homeservice.saveConnectingLog(request.getRemoteAddr(), "bible");
+
 		long dayCount = day;
-		if (dayCount == 0L)
+		boolean isToday = false;
+
+		if (dayCount == 0L || dayCount == getDayCount()) {
 			dayCount = getDayCount();
+			isToday = true;
+		}
 
 		model.addAttribute("bibleContentsBf", service.getBibleContentsByDay(dayCount - (long) 1));
 		model.addAttribute("bibleScheduleBf", service.getBibleScheduleByDay(dayCount - (long) 1));
@@ -49,6 +54,7 @@ public class BibleController {
 		model.addAttribute("bibleScheduleAf", service.getBibleScheduleByDay(dayCount + (long) 1));
 
 		model.addAttribute("dayCount", dayCount);
+		model.addAttribute("isToday", isToday);
 
 		model.addAttribute("connectingCount", homeservice.getConnectingCount());
 		model.addAttribute("connectingTotalCount", homeservice.getConnectingTotalCount());
@@ -67,7 +73,7 @@ public class BibleController {
 	@RequestMapping(value = "/getBibleByDay.json")
 	public Map<String, Object> getBibleByDay(HttpServletRequest request, Locale locale, Model model,
 			@RequestParam(value = "day", defaultValue = "0") long day) throws Exception {
-		logger.info("/getBibleByDay.json?day="+day);
+		logger.info("/getBibleByDay.json?day=" + day);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bibleContentsAll", service.getBibleContentsByDay(day));
