@@ -69,6 +69,7 @@
 					<li class="menu_item"><a href="/">Home</a></li>
 					<li class="menu_item"><a href="/bible.do">연대기성경</a></li>
 					<li class="menu_item"><a href="/bibleAllView.do">연대기성경365일</a></li>
+					<li class="menu_item"><a href="/jubo.do">주보</a></li>
 					<li class="menu_item"><a href="/plan.do">연간계획</a></li>
 					<li class="menu_item"><a href="/news.do">모임뉴스</a></li>
 					<li class="menu_item"><a href="/contact.do">Contact</a></li>
@@ -118,6 +119,7 @@
 														<li><a href="/">Home</a></li>
 														<li><a href="/bible.do">연대기성경</a></li>
 														<li class="active"><a href="/bibleAllView.do">연대기성경365일</a></li>
+														<li><a href="/jubo.do">주보</a></li>
 														<li><a href="/plan.do">연간계획</a></li>
 														<li><a href="/news.do">모임뉴스</a></li>
 														<li><a href="/contact.do">Contact</a></li>
@@ -276,6 +278,7 @@
 										<li class="active"><a href="/">Home</a></li>
 										<li><a href="/bible.do">연대기성경</a></li>
 										<li><a href="/bibleAllView.do">연대기성경365일</a></li>
+										<li><a href="/jubo.do">주보</a></li>
 										<li><a href="/plan.do">연간계획</a></li>
 										<li><a href="/news.do">모임뉴스</a></li>
 										<li><a href="/contact.do">Contact</a></li>
