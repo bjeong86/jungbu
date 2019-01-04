@@ -9,5 +9,6 @@
 		<typeAlias alias="PlanInfoVO" type="com.spring.assem.plan.vo.PlanInfoVO"/>
 		<typeAlias alias="NewsVO" type="com.spring.assem.news.vo.NewsVO"/>
 		<typeAlias alias="StudentVO" type="com.spring.assem.student.vo.StudentVO"/>
+		<typeAlias alias="JuboVO" type="com.spring.assem.jubo.vo.JuboVO"/>
 	</typeAliases>
 </configuration>

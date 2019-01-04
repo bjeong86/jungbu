@@ -27,7 +27,6 @@
 		<property name="password" value="sjch0191!!"></property>
 	</bean>
 
-
 	<!-- SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
@@ -40,16 +39,30 @@
 				<value>classpath*:com/spring/assem/plan/mapper/*.xml</value>
 				<value>classpath*:com/spring/assem/news/mapper/*.xml</value>
 				<value>classpath*:com/spring/assem/student/mapper/*.xml</value>
+				<value>classpath*:com/spring/assem/jubo/mapper/*.xml</value>
 			</list>
 		</property>
 	</bean>
 
+	<!-- ajax json -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
 		id="viewResolver" />
 	<bean
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"
 		id="jsonView">
 		<property name="contentType" value="application/json;charset=UTF-8" />
+	</bean>
+
+	<!-- 멀티파트 리졸버 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<!-- property name="maxInMemorySize" value="52428800" / -->
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
 	</bean>
 
 	<!-- SqlSessionTemplate -->
@@ -63,4 +76,5 @@
 	<context:component-scan base-package="com.spring.assem.plan.*"></context:component-scan>
 	<context:component-scan base-package="com.spring.assem.news.*"></context:component-scan>
 	<context:component-scan base-package="com.spring.assem.student.*"></context:component-scan>
+	<context:component-scan base-package="com.spring.assem.jubo.*"></context:component-scan>
 </beans>
