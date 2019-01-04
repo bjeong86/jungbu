@@ -31,7 +31,7 @@ public class PlanController {
 	@RequestMapping(value = "/plan.do")
 	public String plan(Locale locale, Model model) throws Exception {
 		logger.info("/plan.do");
-		model.addAttribute("planInfo", service.getPlanInfoByYear("2018"));
+		model.addAttribute("planInfo", service.getPlanInfoByYear("2019"));
 		return "plan/plan";
 	}
 	

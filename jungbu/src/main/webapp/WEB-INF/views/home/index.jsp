@@ -152,8 +152,7 @@
 							<div class="section_title">교회소개</div>
 						</div>
 					</div>
-					<br>
-					<br>
+					<br> <br>
 					<div class="row row-eq-height">
 						<!-- Info Box -->
 						<div class="col-lg-6 info_box_col">
@@ -222,7 +221,7 @@
 								</div>
 								<div class="icon_box_text">
 									<h4>
-										. 09.00 - 10.30 : 교회학교(학생부/성인부)<br> <br> . 11.00 - 12.00 : 예 배<br> <br> . 12.00 - 13.00 : 말 씀 / 연대기성경공부<br> <br> . 13.00 - 14.00 : 애 찬<br> <br> . 14.00 - 16.00 : 소그룹 활동/찬양집회
+										. 09.00 - 10.30 : 교회학교<br> <br> . 11.00 - 12.00 : 예 배<br> <br> . 12.00 - 13.00 : 말 씀<br> <br> . 13.00 - 14.00 : 애 찬<br> <br> . 14.30 - 16.00 : 특별활동
 									</h4>
 								</div>
 							</div>
@@ -267,7 +266,7 @@
 									</div>
 								</div>
 								<div class="icon_box_text">
-									<h4>. 20.00 - 22.00 : 양육반</h4>
+									<h4>. 20.00 - 22.00 : 양육반 / 가정집회</h4>
 								</div>
 							</div>
 						</div>
@@ -281,7 +280,7 @@
 									</div>
 								</div>
 								<div class="icon_box_text">
-									<h4>. 19.00 - 21.00 : 청년부</h4>
+									<h4>. 19.00 - 21.00 : 청년부<br> <br>. 20.30 - 21.30 : 일꾼회의</h4>
 								</div>
 							</div>
 						</div>
@@ -405,12 +404,12 @@
 							<div class="col-lg-6 footer_col">
 								<div class="footer_hours">
 									<div class="footer_hours_title">
-										<h3>주일 예배 일정</h3>
+										<h3>주일 집회 일정</h3>
 									</div>
 									<ul class="hours_list">
 										<li class="d-flex flex-row align-items-center justify-content-start">
 											<div>
-												<h4>교회학교(학생부/성인부)</h4>
+												<h4>교회학교</h4>
 											</div>
 											<div class="ml-auto">
 												<h4>9.00 – 10.30</h4>
@@ -426,7 +425,7 @@
 										</li>
 										<li class="d-flex flex-row align-items-center justify-content-start">
 											<div>
-												<h4>말 씀 / 연대기성경공부</h4>
+												<h4>말 씀</h4>
 											</div>
 											<div class="ml-auto">
 												<h4>12.00 – 13.00</h4>
@@ -442,10 +441,10 @@
 										</li>
 										<li class="d-flex flex-row align-items-center justify-content-start">
 											<div>
-												<h4>소그룹 활동/찬양집회</h4>
+												<h4>특별활동</h4>
 											</div>
 											<div class="ml-auto">
-												<h4>14.00 – 16.00</h4>
+												<h4>14.30 – 16.00</h4>
 											</div>
 										</li>
 									</ul>

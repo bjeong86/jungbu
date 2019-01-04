@@ -259,13 +259,10 @@
 													<font size=3>- ${dayCount}일차 , <fmt:formatDate value="${toDay}" pattern="MM월dd일 E요일" /> -
 													</font>
 													<br>
-												</c:if> 
-												<c:if test="${isToday eq false }">
-													<font size=3>- ${dayCount}일차  -
-													</font>
+												</c:if> <c:if test="${isToday eq false }">
+													<font size=3>- ${dayCount}일차 - </font>
 													<br>
-												</c:if> 
-												<c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
+												</c:if> <c:forEach items="${bibleSchedule}" var="schedule" varStatus="status">
 													<font size="4">[ ${schedule.title} ${schedule.sChapter} ~ ${schedule.eChapter}장 ]<br></font>
 												</c:forEach>
 											</a>
@@ -377,12 +374,12 @@
 						<div class="col-lg-6 footer_col">
 							<div class="footer_hours">
 								<div class="footer_hours_title">
-									<h3>주일 예배 일정</h3>
+									<h3>주일 집회 일정</h3>
 								</div>
 								<ul class="hours_list">
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>교회학교(학생부/성인부)</h4>
+											<h4>교회학교</h4>
 										</div>
 										<div class="ml-auto">
 											<h4>9.00 – 10.30</h4>
@@ -398,7 +395,7 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>말 씀 / 연대기성경공부</h4>
+											<h4>말 씀</h4>
 										</div>
 										<div class="ml-auto">
 											<h4>12.00 – 13.00</h4>
@@ -414,10 +411,10 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>소그룹 활동/찬양집회</h4>
+											<h4>특별활동</h4>
 										</div>
 										<div class="ml-auto">
-											<h4>14.00 – 16.00</h4>
+											<h4>14.30 – 16.00</h4>
 										</div>
 									</li>
 								</ul>

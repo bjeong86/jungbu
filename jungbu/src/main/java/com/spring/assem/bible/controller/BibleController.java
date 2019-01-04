@@ -43,15 +43,27 @@ public class BibleController {
 			dayCount = getDayCount();
 			isToday = true;
 		}
-
-		model.addAttribute("bibleContentsBf", service.getBibleContentsByDay(dayCount - (long) 1));
-		model.addAttribute("bibleScheduleBf", service.getBibleScheduleByDay(dayCount - (long) 1));
+		
+		logger.info("dayCount : "+dayCount);
+		
+		if(dayCount == 1L){
+			model.addAttribute("bibleContentsBf", service.getBibleContentsByDay((long) 365));
+			model.addAttribute("bibleScheduleBf", service.getBibleScheduleByDay((long) 365));
+		}else{
+			model.addAttribute("bibleContentsBf", service.getBibleContentsByDay(dayCount - (long) 1));
+			model.addAttribute("bibleScheduleBf", service.getBibleScheduleByDay(dayCount - (long) 1));
+		}
 
 		model.addAttribute("bibleContents", service.getBibleContentsByDay(dayCount));
 		model.addAttribute("bibleSchedule", service.getBibleScheduleByDay(dayCount));
 
-		model.addAttribute("bibleContentsAf", service.getBibleContentsByDay(dayCount + (long) 1));
-		model.addAttribute("bibleScheduleAf", service.getBibleScheduleByDay(dayCount + (long) 1));
+		if(dayCount == 365L){
+			model.addAttribute("bibleContentsAf", service.getBibleContentsByDay((long) 1));
+			model.addAttribute("bibleScheduleAf", service.getBibleScheduleByDay((long) 1));
+		}else{
+			model.addAttribute("bibleContentsAf", service.getBibleContentsByDay(dayCount + (long) 1));
+			model.addAttribute("bibleScheduleAf", service.getBibleScheduleByDay(dayCount + (long) 1));
+		}
 
 		model.addAttribute("dayCount", dayCount);
 		model.addAttribute("isToday", isToday);
@@ -90,6 +102,12 @@ public class BibleController {
 		long l_sday = sday.getTimeInMillis() / (24 * 60 * 60 * 1000);
 		long l_today = today.getTimeInMillis() / (24 * 60 * 60 * 1000);
 
-		return (l_today - l_sday) % 365;
+		long gap = (l_today - l_sday) % 365;
+
+		if (gap == 0) {
+			return 365L;
+		} else {
+			return gap;
+		}
 	}
 }

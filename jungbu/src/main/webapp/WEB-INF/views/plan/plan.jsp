@@ -130,62 +130,86 @@
 								<div class="tab">
 									<div class="tab_title">1월 :: January</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_1}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_1}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">2월 :: Feburary</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_2}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_2}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">3월 :: March</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_3}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_3}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">4월 :: April</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_4}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_4}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">5월 :: May</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_5}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_5}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">6월 :: June</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_6}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_6}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">7월 :: July</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_7}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_7}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">8월 :: August</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_8}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_8}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">9월 :: September</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_9}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_9}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">10월 :: October</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_10}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_10}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">11월 : November</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_11}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_11}</font>
+									</div>
 								</div>
 								<div class="tab">
 									<div class="tab_title">12월 : December</div>
 									<br>
-									<div class="tab_text"><font color="black">${plan.month_12}</font></div>
+									<div class="tab_text">
+										<font color="black">${plan.month_12}</font>
+									</div>
 								</div>
 						</div>
 						</c:forEach>
@@ -230,12 +254,12 @@
 						<div class="col-lg-6 footer_col">
 							<div class="footer_hours">
 								<div class="footer_hours_title">
-									<h3>주일 예배 일정</h3>
+									<h3>주일 집회 일정</h3>
 								</div>
 								<ul class="hours_list">
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>교회학교(학생부/성인부)</h4>
+											<h4>교회학교</h4>
 										</div>
 										<div class="ml-auto">
 											<h4>9.00 – 10.30</h4>
@@ -251,7 +275,7 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>말 씀 / 연대기성경공부</h4>
+											<h4>말 씀</h4>
 										</div>
 										<div class="ml-auto">
 											<h4>12.00 – 13.00</h4>
@@ -267,10 +291,10 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div>
-											<h4>소그룹 활동/찬양집회</h4>
+											<h4>특별활동</h4>
 										</div>
 										<div class="ml-auto">
-											<h4>14.00 – 16.00</h4>
+											<h4>14.30 – 16.00</h4>
 										</div>
 									</li>
 								</ul>
