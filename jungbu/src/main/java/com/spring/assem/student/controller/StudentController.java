@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.student.model.StudentService;
 
 /**
@@ -27,9 +29,14 @@ public class StudentController {
 	@Inject
 	private StudentService service;
 
+	@Inject
+	private LogService logService;
+
 	@RequestMapping(value = "/student.do")
-	public String student(Locale locale, Model model) throws Exception {
+	public String student(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/student.do");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "학생부회의록");
+		
 		model.addAttribute("studentInfo", service.getStudentInfo());
 		return "student/student";
 	}
@@ -38,7 +45,7 @@ public class StudentController {
 	public String saveStudent(@RequestParam(value = "studentText") String studentText, @RequestParam(value = "pwd") String pwd, Locale locale,
 			Model model) throws Exception {
 		logger.info("/saveStudent.do");
-		
+
 		if ("1q2w3e4r".equals(pwd)) {
 			studentText = studentText.replaceAll("\r\n", "<br/>");
 			service.saveStudentInfo(studentText);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.assem.bible.service.BibleService;
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.home.service.HomeService;
 
 @Controller
@@ -29,13 +30,16 @@ public class BibleController {
 
 	@Inject
 	private BibleService service;
+	
+	@Inject
+	private LogService logService;
 
 	@RequestMapping(value = "/bible.do")
 	public String bible(HttpServletRequest request, Locale locale, Model model, @RequestParam(value = "day", defaultValue = "0") long day)
 			throws Exception {
 		logger.info("/bible.do");
-		homeservice.saveConnectingLog(request.getRemoteAddr(), "bible");
-
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "연대기성경");
+		
 		long dayCount = day;
 		boolean isToday = false;
 
@@ -77,6 +81,7 @@ public class BibleController {
 	@RequestMapping(value = "/bibleAllView.do")
 	public String bibleAllView(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/bibleAllView.do");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "연대기성경365일");
 
 		return "bible/bibleAllView";
 	}

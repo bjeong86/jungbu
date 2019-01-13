@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.assem.bible.service.BibleService;
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.plan.service.PlanService;
 import com.spring.assem.plan.vo.PlanInfoVO;
 
@@ -28,9 +30,14 @@ public class PlanController {
 	@Inject
 	private PlanService service;
 	
+	@Inject
+	private LogService logService;
+	
 	@RequestMapping(value = "/plan.do")
-	public String plan(Locale locale, Model model) throws Exception {
+	public String plan(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/plan.do");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "ø¨∞£∞Ë»π");
+		
 		model.addAttribute("planInfo", service.getPlanInfoByYear("2019"));
 		return "plan/plan";
 	}

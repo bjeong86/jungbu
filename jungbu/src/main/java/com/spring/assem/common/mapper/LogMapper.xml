@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.assem.common.mappers.LogMapper">
+
+	<select id="getLogs" resultType="LogVO">
+		select ip,
+			sessionId,
+			url,
+			userId,
+			userName,
+			regdate
+		from USAGELOG
+		where DATE_FORMAT(regdate, "%Y") = DATE_FORMAT(NOW(), "%Y")
+		order by regdate desc;
+	</select>
+
+	<insert id="insertLog" parameterType="LogVO">
+		insert into USAGELOG(ip, sessionId, url, regdate)
+		values("${ip}", "${sessionId}", "${url}", now());
+	</insert>
+
+</mapper>

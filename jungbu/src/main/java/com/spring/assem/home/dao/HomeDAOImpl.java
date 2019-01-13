@@ -24,14 +24,6 @@ public class HomeDAOImpl implements HomeDAO {
 	}
 
 	@Override
-	public void saveConnectingLog(String ip, String msg) throws Exception {
-		ConnectingLogVO vo = new ConnectingLogVO();
-		vo.setIp(ip);
-		vo.setUserName(msg);
-		sqlSession.insert(Namespace + ".insertConnectingLog", vo);
-	}
-
-	@Override
 	public int getConnectingCount() throws Exception {
 		ConnectingLogVO cvo = (ConnectingLogVO)sqlSession.selectList(Namespace + ".getConnectingCount").get(0);
 		return cvo.getCount();

@@ -12,16 +12,11 @@
 		from MAIN_INFO;
 	</select>
 	
-	<insert id="insertConnectingLog" parameterType="ConnectingLogVO">
-		insert into USAGELOG(ip, userName, regdate)
-		values("${ip}", "${userName}", now());
-	</insert>
-	
 	<select id="getConnectingCount" resultType="ConnectingLogVO">
 		select count(*) as count
 		from USAGELOG
 		where date_format(regdate,'%Y/%m/%d') = date_format(now(),'%Y/%m/%d')
-		and userName = 'bible';
+		and url = '연대기성경';
 	</select>
 	
 	<select id="getConnectingTotalCount" resultType="ConnectingLogVO">

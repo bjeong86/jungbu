@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.assem.bible.service.BibleService;
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.home.service.HomeService;
 import com.spring.assem.news.service.NewsService;
 
@@ -23,10 +24,14 @@ public class NewsController {
 	
 	@Inject
 	private NewsService service;
+	
+	@Inject
+	private LogService logService;
 
 	@RequestMapping(value = "/news.do")
 	public String news(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/news.do");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "모임뉴스");
 		
 		model.addAttribute("moimNewsContents", service.getMoimNews());
 

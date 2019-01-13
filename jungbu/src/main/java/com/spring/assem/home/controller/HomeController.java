@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.assem.common.dao.LogDAO;
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.home.service.HomeService;
 import com.spring.assem.home.vo.SwjMainInfoVO;
 
@@ -23,11 +25,14 @@ public class HomeController {
 
 	@Inject
 	private HomeService service;
+	
+	@Inject
+	private LogService logService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
-//		service.saveConnectingLog(request.getRemoteAddr(),"home");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "HOME");
 		
 		List<SwjMainInfoVO> swjMainInfoVOList = service.getSwjMainInfo();
 		model.addAttribute("swjMainInfoVOList", swjMainInfoVOList);

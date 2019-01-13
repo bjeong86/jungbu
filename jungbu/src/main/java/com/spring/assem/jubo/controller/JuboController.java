@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.assem.common.service.LogService;
 import com.spring.assem.jubo.service.JuboService;
 import com.spring.assem.jubo.vo.JuboVO;
 
@@ -24,10 +25,14 @@ public class JuboController {
 
 	@Inject
 	private JuboService service;
+	
+	@Inject
+	private LogService logService;
 
 	@RequestMapping(value = "/jubo.do")
 	public String jubo(HttpServletRequest request, Locale locale, Model model) throws Exception {
 		logger.info("/jubo.do");
+		logService.saveLog(request.getRemoteAddr(), request.getSession().getId(), "¡÷∫∏");
 
 		model.addAttribute("juboList", service.getJubo("2019"));
 

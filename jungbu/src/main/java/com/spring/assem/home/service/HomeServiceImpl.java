@@ -21,11 +21,6 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
-	public void saveConnectingLog(String ip, String msg) throws Exception {
-		dao.saveConnectingLog(ip, msg);
-	}
-
-	@Override
 	public int getConnectingCount() throws Exception {
 		return dao.getConnectingCount();
 	}
