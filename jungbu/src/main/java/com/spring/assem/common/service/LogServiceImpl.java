@@ -24,4 +24,9 @@ public class LogServiceImpl implements LogService {
 	public List<LogVO> getLogs() throws Exception {
 		return dao.getLogs();
 	}
+
+	@Override
+	public List<LogVO> getLogTotalView() throws Exception {
+		return dao.getLogTotalView();
+	}
 }

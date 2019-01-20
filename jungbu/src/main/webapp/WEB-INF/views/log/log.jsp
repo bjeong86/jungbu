@@ -117,6 +117,21 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<!-- Tabs -->
+						<table style="border: 1px solid #444444; width: 100%;">
+							<tr style="border: 1px solid #444444;">
+								<td style="border: 1px solid #444444;text-align: center;"><font color="black">날짜</font></td>
+								<td style="border: 1px solid #444444;text-align: center;"><font color="black">URL</font></td>
+								<td style="border: 1px solid #444444;text-align: center;"><font color="black">조회수</font></td>
+							</tr>
+							<c:forEach items="${logTotalViewList}" var="totalView" varStatus="status">
+								<tr style="border: 1px solid #444444;">
+									<td style="border: 1px solid #444444;text-align: center;"><font color="black">${totalView.regdate}</font></td>
+									<td style="border: 1px solid #444444;text-align: center;"><font color="black">${totalView.url}</font></td>
+									<td style="border: 1px solid #444444;text-align: center;"><font color="black">${totalView.count}</font></td>
+								</tr>
+							</c:forEach>
+						</table>
+						<br>
 						<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
 							<div class="tab">
 								<c:forEach items="${logVOList}" var="log" varStatus="status">

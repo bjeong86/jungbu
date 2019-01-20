@@ -33,5 +33,10 @@ public class LogDAOImpl implements LogDAO {
 	public List<LogVO> getLogs() throws Exception {
 		return sqlSession.selectList(Namespace + ".getLogs");
 	}
+
+	@Override
+	public List<LogVO> getLogTotalView() throws Exception {
+		return sqlSession.selectList(Namespace + ".getLogTotalView");
+	}
 	
 }

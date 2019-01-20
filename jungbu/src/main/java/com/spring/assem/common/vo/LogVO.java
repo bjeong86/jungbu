@@ -13,6 +13,7 @@ public class LogVO implements Serializable {
 	String userId;
 	String userName;
 	String regdate;
+	String count;
 	
 	public int getId() {
 		return id;
@@ -56,5 +57,11 @@ public class LogVO implements Serializable {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
+
 }

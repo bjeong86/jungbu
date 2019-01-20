@@ -13,8 +13,19 @@
 			userName,
 			regdate
 		from USAGELOG
-		where DATE_FORMAT(regdate, "%Y") = DATE_FORMAT(NOW(), "%Y")
+		where DATE_FORMAT(regdate, "%Y %m") = DATE_FORMAT(NOW(), "%Y %m")
 		order by regdate desc;
+	</select>
+	
+	<select id="getLogTotalView" resultType="LogVO">
+		select DATE_FORMAT(regdate, "%Y/%m/%d") regdate, 
+			url, 
+			count(*) count
+		from USAGELOG
+		where url is not null
+			and DATE_FORMAT(regdate, "%Y/%m/%d") >= DATE_FORMAT(date_add(now(), interval -5 day), "%Y/%m/%d")
+		group by url, DATE_FORMAT(regdate, "%Y %m %d")
+		order by regdate desc, url;
 	</select>
 
 	<insert id="insertLog" parameterType="LogVO">

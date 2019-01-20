@@ -469,6 +469,7 @@
 											<li><a href="/plan.do">연간계획</a></li>
 											<li><a href="/news.do">모임뉴스</a></li>
 											<li><a href="/contact.do">Contact</a></li>
+											<li><a href="/student.do">student</a></li>
 										</ul>
 									</nav>
 									<div class="footer_phone ml-lg-auto">

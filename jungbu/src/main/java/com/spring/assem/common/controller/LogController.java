@@ -27,8 +27,9 @@ public class LogController {
 	@RequestMapping(value = "/log.do", method = RequestMethod.GET)
 	public String log(HttpServletRequest request, Locale locale, Model model) throws Exception {
 
-		List<LogVO> logVOList = service.getLogs();
-		model.addAttribute("logVOList", logVOList);
+//		List<LogVO> logVOList = service.getLogs();
+		model.addAttribute("logVOList",  service.getLogs());
+		model.addAttribute("logTotalViewList",  service.getLogTotalView());
 		
 		return "log/log";
 	}
