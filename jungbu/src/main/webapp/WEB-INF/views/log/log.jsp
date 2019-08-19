@@ -131,15 +131,6 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<br>
-						<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
-							<div class="tab">
-								<c:forEach items="${logVOList}" var="log" varStatus="status">
-									<font color="black">[ ${log.regdate} ] :: [ ${log.url} ] :: [ ${log.sessionId} ]</font>
-									<br>
-								</c:forEach>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
