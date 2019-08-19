@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="getConnectingTotalCount" resultType="ConnectingLogVO">
-		select count(*) as count
+		select count(sessionId) as count
 		from USAGELOG;
 	</select>
 

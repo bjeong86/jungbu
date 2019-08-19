@@ -11,5 +11,6 @@
 		<typeAlias alias="StudentVO" type="com.spring.assem.student.vo.StudentVO"/>
 		<typeAlias alias="JuboVO" type="com.spring.assem.jubo.vo.JuboVO"/>
 		<typeAlias alias="LogVO" type="com.spring.assem.common.vo.LogVO"/>
+		<typeAlias alias="UserVO" type="com.spring.assem.user.vo.UserVO"/>
 	</typeAliases>
 </configuration>
